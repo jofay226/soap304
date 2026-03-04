@@ -1,3 +1,7 @@
-export const listUserHandler = () => {
-    console.log('list handler');
+import { listUsersService } from "../services/user.service.ts";
+
+export const listUserHandler = async () => {
+    const users = await listUsersService()
+
+    
 }

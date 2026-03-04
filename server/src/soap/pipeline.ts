@@ -11,5 +11,5 @@ export const pipeline = async (req:Request, res:Response) => {
     
     
     
-    res.json({message:"rsgfjhsgfjhsgfjhdsgfjh"})
+    res.json({message:"success"})
 }
