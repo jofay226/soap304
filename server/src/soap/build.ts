@@ -3,8 +3,7 @@ import {Builder} from 'xml2js'
 export const jsonToXml = (operationType: string, payload) => {
     const builder = new Builder({ headless: true })
 
-    console.log(operationType);
-    console.log(payload);
+   
     
     
     let soapResponse = {
@@ -23,7 +22,7 @@ export const jsonToXml = (operationType: string, payload) => {
         }
     }
 
-    console.log(soapResponse);
+
     
     return builder.buildObject(soapResponse)
 }
