@@ -1,11 +1,11 @@
 import {Builder} from 'xml2js'
 
+
+
 export const jsonToXml = (operationType: string, payload) => {
     const builder = new Builder({ headless: true })
 
    
-    
-    
     let soapResponse = {
         "soap:Envelope": {
             $: {"xmlns:soap": "https://schemas.xmlsoap.org/soap/envelope/"},
