@@ -1,11 +1,12 @@
 "use client";
 import axios from "axios";
+import { useEffect } from "react";
 
 const soapRequestToGetAllUsers = `
-  <soap:Envelope xmlns:soap="">
+  <soap:Envelope xmlns:soap="https://schemas.xmlsoap.org/soap/envelope/">
     <soap:Body>
-      <getAllUsersRequest>
-      </getAllUsersRequest>
+      <listUsersRequest>
+      </listUsersRequest>
     </soap:Body>
   </soap:Envelope>
 `;
@@ -15,8 +16,18 @@ export default function Home() {
     const res = await axios.post(
       "http://localhost:4000/api/soap",
       soapRequestToGetAllUsers,
+      {
+        headers: {
+          "Content-Type": "text/xml",
+        },
+      },
     );
+    console.log(res);
   };
+
+  useEffect(() => {
+    getUsersHandler();
+  }, []);
 
   return (
     <>
