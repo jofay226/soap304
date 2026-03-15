@@ -203,36 +203,7 @@ export default function Home() {
                     </thead>
 
                     <tbody className="divide-y divide-slate-200 bg-white">
-                      {[
-                        {
-                          name: "Ali Valiyev",
-                          email: "ali@example.com",
-                          role: "Frontend Developer",
-                          age: 24,
-                          status: "Active",
-                        },
-                        {
-                          name: "Sara Johnson",
-                          email: "sara@example.com",
-                          role: "Backend Developer",
-                          age: 29,
-                          status: "Inactive",
-                        },
-                        {
-                          name: "John Smith",
-                          email: "john@example.com",
-                          role: "Designer",
-                          age: 31,
-                          status: "Active",
-                        },
-                        {
-                          name: "Maya Brown",
-                          email: "maya@example.com",
-                          role: "Manager",
-                          age: 35,
-                          status: "Active",
-                        },
-                      ].map((user) => (
+                      {users.map((user) => (
                         <tr key={user.email} className="hover:bg-slate-50/80">
                           <td className="px-5 py-4">
                             <div className="flex items-center gap-3">
@@ -254,13 +225,13 @@ export default function Home() {
                           </td>
 
                           <td className="px-5 py-4 text-sm text-slate-700">
-                            {user.role}
+                            UI/UX
                           </td>
                           <td className="px-5 py-4 text-sm text-slate-700">
                             {user.age}
                           </td>
 
-                          <td className="px-5 py-4">
+                          {/* <td className="px-5 py-4">
                             <span
                               className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
                                 user.status === "Active"
@@ -270,7 +241,7 @@ export default function Home() {
                             >
                               {user.status}
                             </span>
-                          </td>
+                          </td> */}
 
                           <td className="px-5 py-4">
                             <div className="flex justify-end gap-2">
