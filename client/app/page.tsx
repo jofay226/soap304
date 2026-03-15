@@ -1,6 +1,8 @@
 "use client";
-import axios from "axios";
-import { useEffect } from "react";
+import { axiosInstance } from "@/utils/axios";
+
+import { useEffect, useState } from "react";
+import { parseStringPromise } from "xml2js";
 
 const soapRequestToGetAllUsers = `
   <soap:Envelope xmlns:soap="https://schemas.xmlsoap.org/soap/envelope/">
@@ -12,18 +14,22 @@ const soapRequestToGetAllUsers = `
 `;
 
 export default function Home() {
+  const [users, setUsers] = useState([]);
+
   const getUsersHandler = async () => {
-    const res = await axios.post(
-      "http://localhost:4000/api/soap",
-      soapRequestToGetAllUsers,
-      {
-        headers: {
-          "Content-Type": "text/xml",
-        },
-      },
-    );
-    console.log(res);
+    const res = await axiosInstance.post("/", soapRequestToGetAllUsers);
+    const parseResult = await parseStringPromise(res.data);
+    const users = parseResult["soap:Envelope"]["soap:Body"][0][
+      "listUsersResponse"
+    ][0]["user"].map((u) => ({
+      name: u.name[0],
+      age: u.age[0],
+      email: u.email[0],
+    }));
+    setUsers(users);
   };
+
+  console.log(users);
 
   useEffect(() => {
     getUsersHandler();
@@ -35,7 +41,7 @@ export default function Home() {
         onClick={getUsersHandler}
         className="px-5 py-2.5 bg-amber-600 rounded-full"
       >
-        GET ALL USERS
+        201 GET ALL USERS
       </button>
     </>
   );
